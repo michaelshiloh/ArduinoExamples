@@ -13,8 +13,7 @@ void setup() {
   
   Serial.begin(57600);
   Serial.println("waiting for serial port");
-  while(!Serial)
-    ;
+  // while(!Serial) { ; }
     
   Serial.println("Yun bidirectional client/server demonstration, SERVER side");
   

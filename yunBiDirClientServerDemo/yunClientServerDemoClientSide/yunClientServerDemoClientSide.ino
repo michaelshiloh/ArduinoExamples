@@ -2,7 +2,7 @@
 #include <YunClient.h>
 
 const int SERVER_PORT = 6666;
-const byte SERVER_ADDR[] = { 192, 168, 1, 129 };
+const byte SERVER_ADDR[] = { 10, 10, 46, 59 };
 
 YunClient toServer;
 long OpenWRTBaud = 250000; // Baud rate for communicating with Linux side
@@ -11,8 +11,7 @@ void setup() {
  
   Serial.begin(57600);
   Serial.println("waiting for serial port");
-  while(!Serial)
-    ;
+  //while(!Serial) { ; }
   
   Serial.println("Yun bidirectional client/server demonstration, CLIENT side");
   
@@ -38,7 +37,10 @@ void loop() {
     Serial.print('.');
     Serial.print(SERVER_ADDR[2]);
     Serial.print('.');
-    Serial.println(SERVER_ADDR[3]);
+    Serial.print(SERVER_ADDR[3]);
+    Serial.print(". ");
+    printMyIPAddress();
+    Serial.println("");
     delay(1000);
   }
   
