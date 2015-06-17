@@ -1,5 +1,5 @@
 /*
-This program is for testin carmen 
+This program is for testing carmen miranda or don francisco
 */
 
 // motors
