@@ -12,7 +12,7 @@ void setup() {
 
   Serial.begin(9600);
 
-  Serial.println("DS1307RTC Read Test");
+  Serial.println("DS1307RTC annunciator");
   Serial.println("-------------------");
 }
 
@@ -20,19 +20,19 @@ void loop() {
   tmElements_t tm;
 
   if (RTC.read(tm)) {
-    Serial.print("Ok, Time = ");
-    print2digits(tm.Hour);
-    Serial.write(':');
-    print2digits(tm.Minute);
-    Serial.write(':');
-    print2digits(tm.Second);
-    Serial.print(", Date (D/M/Y) = ");
-    Serial.print(tm.Day);
-    Serial.write('/');
-    Serial.print(tm.Month);
-    Serial.write('/');
-    Serial.print(tmYearToCalendar(tm.Year));
-    Serial.println();
+    //    Serial.print("Ok, Time = ");
+    //    print2digits(tm.Hour);
+    //    Serial.write(':');
+    //    print2digits(tm.Minute);
+    //    Serial.write(':');
+    //    print2digits(tm.Second);
+    //    Serial.print(", Date (D/M/Y) = ");
+    //    Serial.print(tm.Day);
+    //    Serial.write('/');
+    //    Serial.print(tm.Month);
+    //    Serial.write('/');
+    //    Serial.print(tmYearToCalendar(tm.Year));
+    //    Serial.println();
   } else {
     if (RTC.chipPresent()) {
       Serial.println("The DS1307 is stopped.  Please run the SetTime");
@@ -46,11 +46,19 @@ void loop() {
   }
 
   if (tm.Second != lastShortBeeped) {
+    Serial.println();
+    Serial.print(tm.Second);
+    Serial.print("\t");
+    Serial.print(lastShortBeeped);
+    Serial.print("\t");
+    Serial.print(lastLongBeeped);
+    Serial.print("\t");
     shortBeep();
     lastShortBeeped = tm.Second;
   }
 
   if (tm.Second >= (lastLongBeeped + 10)) {
+    Serial.println(tm.Second);
     longBeep();
     lastLongBeeped = tm.Second;
   }
@@ -58,13 +66,15 @@ void loop() {
 
 void shortBeep() {
   digitalWrite(beepPin, HIGH);
-  delay(10);
+  delay(1);
   digitalWrite(beepPin, LOW);
+  Serial.println("eep");
 }
 void longBeep() {
   digitalWrite(beepPin, HIGH);
-  delay(100);
+  delay(50);
   digitalWrite(beepPin, LOW);
+  Serial.println("Beeeeeeeeep");
 }
 
 void print2digits(int number) {
