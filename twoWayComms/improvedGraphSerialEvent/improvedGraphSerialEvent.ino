@@ -1,7 +1,7 @@
 /*
 Replacement serialEvent() for that in the built-in example
 
-	Communications -> Graph 
+	Communication -> Graph 
 
 which does more thorough error checking and discards invalid data
 It seems to capture most (all?) of the reasons for the float() conversion
@@ -16,6 +16,14 @@ Change log for this replacement:
 	October 30, 2017 - Michael Shiloh - check for non-numeric and invalid data
 
 This example code is in the public domain.
+
+Instructions for use:
+
+	1. In Arduino, open File -> Examples -> Communication -> Graph
+	2. Copy the Processing code from the Arduino code into a new Processing
+		window
+	3. In Processing, delete the serialEvent() function
+	4. In processing, paste the contents of this file
 
 */
 
