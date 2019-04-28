@@ -88,7 +88,7 @@ void printMyIPAddress()
    Process getMyIPAddr;  // initialize a new process
    
    Serial.print ("My IP address: ");
-   getMyIPAddr.runShellCommand("ifconfig eth1 | grep addr | grep -v HWaddr | cut -c21-35");  // command you want to run
+   getMyIPAddr.runShellCommand("ifconfig $(route -n | grep ^0.0.0.0 | awk '{print $8}') | egrep -o 'inet addr:[0-9.]+' | cut -d ':' -f 2");  // command you want to run
    while (getMyIPAddr.available() > 0)
    {      
      char c = getMyIPAddr.read();
